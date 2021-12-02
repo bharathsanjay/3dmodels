@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Displaying 3D models</title>
+        <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+			<script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+            <script src="./Smooth Teleportation Desktop_files/aframe-animation-component.min.js.download"></script>
+            <!-- aframe-inspector-plugin-recast @ https://github.com/donmccurdy/aframe-inspector-plugin-recast -->
+            <!-- smooth-teleportation * my custom component to control entities and interactions programmatically -->
+            <script src="./Smooth Teleportation Desktop_files/smooth-teleportation-desktop.js.download"></script>
+            <script async="" src="./Smooth Teleportation Desktop_files/js"></script>
+    </head>
+    <body>
+        <a-scene inspector-plugin-recast>
+          
+            <a-assets>
+                <img id="sky" src="L14-ASSETs/clear-sunny-sky.jpg">
+				<!-- <img id="ground" src="L14-ASSETs/floor-1024.jpg" > -->
+                <a-asset-item id="navmesh" src="./Smooth Teleportation Desktop_files/navmesh.gltf"></a-asset-item>
+				<a-asset-item id="your-3Dmodel-02" src="L14-ASSETs/ramasaami-kovil1/scene.glb"></a-asset-item>
+				<a-asset-item id="your-3Dmodel-01" src="L14-ASSETs/proto2.glb" ></a-asset-item>
+
+
+            </a-assets>
+            
+			<a-entity id="cam-rig" animation="">
+                <!-- Camera -->
+                <a-entity camera="" position="0 5 5" look-controls="pointerLockEnabled: true" rotation="">
+                    <!-- Cursor Raycaster -->
+                    <a-entity id="my-cursor" cursor="" position=" 0 0 -1" geometry="primitive: sphere; radius: 0.005" material="color: #FF0000; shader: flat;" raycaster="objects: .clickable" smooth-teleportation="">
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+			<a-animation attribute="position" to=".7 3 -6" dur="6000" delay="3000" easing="ease-out-quad"></a-animation>
+			</a-camera>
+
+            
+
+            <!-- Sky -->
+            <a-sky src="#sky"></a-sky>
+			        <a-plane src="#ground" scale="40 40 1" repeat="2 2" rotation="-90 0 0" >
+        </a-plane>
+                         <a-entity position="0 0 -14" gltf-model="#your-3Dmodel-02" scale=".8 .8 .8"></a-entity> 
+<a-entity position="1 .3 -14" gltf-model="#your-3Dmodel-01" scale="1 1 1" roughness=".5" rotation="" visible=""></a-entity>
+        </a-scene>
+    </body>
+</html>
